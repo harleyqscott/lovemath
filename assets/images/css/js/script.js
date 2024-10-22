@@ -1,40 +1,81 @@
 //wait for DOM to finsh loadingbefore running the game
 //get the button element and add event listeners to them
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked Submit!");
+                checkAnswers();
             }else{
                let gameType = this.getAttribute("data-type");
-               alert(`You clicked ${gameType}`);
+               runGame(gameType);
+
 
             }    
         })
 
     }
+
+    runGame("addition");
 })
 
-/** the main game "loop", called when the script is first loaded
+/** 
+ * the main game "loop", called when the script is first loaded
  * and after the user's answer has been processed 
 */
-function runGame() {
+function runGame(gameType) {
 
     //creates random number between 1 and 25
-    let num1 = math.floor(math.random() * 25) + 1;
-    let num2 = math.floor(math.random() * 25) + 1;
+    let num1 = Math.floor(Math.random() * 25) + 1;
+    let num2 = Math.floor(Math.random() * 25) + 1;
 
+    if (gameType === "addition") {
+        displayAdditionQuestion(num1, num2);
+    }else{
+        alert(`Unknown game type: ${gameType}`);
+        throw `Unknown game type: ${gameType}. Aborting!`;
+    }
 }
 
-
+/**
+ * checks the answer ahsint the first element in the 
+ * returned calculateCorrectanswer array.
+ */
 function checkAnswers() {
 
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+
+    if (isCorrect) {
+        alert("Hey! You got it right! :D");
+    }else {
+        alert(`awww... you answered ${userAnswer}. the correct answer was ${calculatedAnswer[0]}!`);
+    }
+
+    runGame(calculatedAnswer[1]);
+    
 }
 
+/**
+ * get the operands (the numbers) and the operator (e.g plus)
+ * directly from the DOM, and return the correct answer.
+ */
+//parseInt - makes sure the number is an integer
 function calculateCorrectAnswer() {
+    let operand1 = parseInt(document.getElementById('operand1').innerText);
+    let operand2 = parseInt(document.getElementById('operand2').innerText);
+    let operator = document.getElementById('operator').innerText;
+
+    if (operator === "+") {
+        return [operand1 + operand2, "addition"];
+    }else{
+        alert(`unimplemented operator ${operator} `);
+        throw `unimplemented operator ${operator}. Aborting!`;
+    }
+
 
 }
 
@@ -46,7 +87,10 @@ function incrementWrongAnswer() {
 
 }
 
-function displayAdditionQuestion() {
+function displayAdditionQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "+";
 
 }
 
