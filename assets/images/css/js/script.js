@@ -7,19 +7,19 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let button of buttons) {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-                checkAnswers();
-            }else{
+                checkAnswer();
+            } else {
                let gameType = this.getAttribute("data-type");
                runGame(gameType);
 
 
             }    
-        })
+        });
 
     }
 
     runGame("addition");
-})
+});
 
 /** 
  * the main game "loop", called when the script is first loaded
@@ -33,17 +33,19 @@ function runGame(gameType) {
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
-    }else{
+    } else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2);
+    } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
     }
 }
 
 /**
- * checks the answer ahsint the first element in the 
- * returned calculateCorrectanswer array.
+ * checks the answer against the first element in the 
+ * returned calculateCorrectAnswer array.
  */
-function checkAnswers() {
+function checkAnswer() {
 
     let userAnswer = parseInt(document.getElementById("answer-box").value);
     let calculatedAnswer = calculateCorrectAnswer();
@@ -51,13 +53,15 @@ function checkAnswers() {
 
     if (isCorrect) {
         alert("Hey! You got it right! :D");
-    }else {
-        alert(`awww... you answered ${userAnswer}. the correct answer was ${calculatedAnswer[0]}!`);
+        incrementScore();
+    } else {
+        alert(`Awww... you answered ${userAnswer}. the correct answer was ${calculatedAnswer[0]}!`);
+        incrementWrongAnswer();
     }
 
     runGame(calculatedAnswer[1]);
-    
-}
+
+} 
 
 /**
  * get the operands (the numbers) and the operator (e.g plus)
@@ -71,19 +75,29 @@ function calculateCorrectAnswer() {
 
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
-    }else{
-        alert(`unimplemented operator ${operator} `);
-        throw `unimplemented operator ${operator}. Aborting!`;
+    } else if (operator === "x") {
+        return [operand1 * operand2, "multiply"];
+    } else {
+        alert(`Unimplemented operator ${operator} `);
+        throw `Unimplemented operator ${operator}. Aborting!`;
     }
-
-
 }
 
+/**
+ * gets the current score from the DOM and increments it by 1
+ */
 function incrementScore() {
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
 
 }
-
+/**
+ * gets the current tally of incorrect answers from the DOM and increments it by 1
+ */
 function incrementWrongAnswer() {
+    let oldScore = parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
+
 
 }
 
@@ -98,6 +112,8 @@ function displaySubtractQuestion() {
 
 }
 
-function displayMultiplyQuestion() {
-
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "x";
 }
