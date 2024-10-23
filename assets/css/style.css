@@ -1,5 +1,6 @@
 /* --------- Global style */
 
+
 body {
     background-color: white;
     font-family: "Raleway", sans-serif;
@@ -7,19 +8,24 @@ body {
     text-align: center;
 }
 
+
 /* --------- Heading */
+
 
 .heading {
     text-align: center;
     font-size: 2.5rem;
 }
 
+
 .logo {
     height: 40px;
     padding-right: 5px;
 }
 
+
 /* --------- Game layout */
+
 
 .game-area {
     background-color: #E6ECF0;
@@ -33,6 +39,7 @@ body {
     padding: 1%;
 }
 
+
 .question-area {
     width: 50%;
     font-size: 2rem;
@@ -40,9 +47,11 @@ body {
     padding: 50px 0;
 }
 
+
 .question-area span {
     padding: 0 15px;
 }
+
 
 .score-area {
     margin: 5px auto;
@@ -50,25 +59,30 @@ body {
     font-size: 1.2rem;
 }
 
+
 .controls-area {
     width: 85%;
     margin: 30px auto;
 }
+
 
 #score {
     color: green;
     font-weight: bold;
 }
 
+
 #incorrect {
     color: red;
     font-weight: bold;
 }
 
+
 .answer-message {
     display: none;
     font-size: 1rem;
 }
+
 
 #answer-box {
     border: none;
@@ -79,12 +93,15 @@ body {
     font-size: 1.2rem;
 }
 
+
 .scores {
     display: inline-block;
     padding: 25px;
 }
 
+
 /* --------- Buttons */
+
 
 .btn {
     width: 220px;
@@ -95,9 +112,11 @@ body {
     color: white;
 }
 
+
 .btn:focus {
     outline: none;
 }
+
 
 .btn--big {
     padding-top: 10px;
@@ -111,6 +130,7 @@ body {
     transition: all 0.5s;
 }
 
+
 .btn--big::after{
     content: attr(data-type);
     font-size: 1rem;
@@ -119,10 +139,12 @@ body {
     left: -0.5em;
 }
 
+
 .btn--blue {
     border-color: blue;
     color: blue;
 }
+
 
 .btn--blue:active,
 .btn--blue:hover {
@@ -130,10 +152,12 @@ body {
     color: white;
 }
 
+
 .btn--orange {
     border-color: orange;
     color: orange;
 }
+
 
 .btn--orange:active,
 .btn--orange:hover {
@@ -141,10 +165,12 @@ body {
     color: white;
 }
 
+
 .btn--red {
     border-color: red;
     color: red;
 }
+
 
 .btn--red:active,
 .btn--red:hover {
@@ -152,16 +178,19 @@ body {
     color: white;
 }
 
+
 .btn--green {
     border-color: green;
     color: green;
 }
+
 
 .btn--green:active,
 .btn--green:hover {
     background-color: darkgreen;
     color: white;
 }
+
 
 .btn--gray {
     margin-top: 25px;
@@ -170,17 +199,21 @@ body {
     border-radius: 20px;
 }
 
+
 .btn--gray:active,
 .btn--gray:hover {
     background-color: #0d1013;
 }
 
+
 /* --------- Media queries */
+
 
 @media (max-width: 414px) {
     .controls-area {
         width: 100%;
     }
+
 
     .btn--big {
         margin: 0 10px;
@@ -191,23 +224,28 @@ body {
         font-size: 1.5rem;
     }
 
+
     .btn--big::after {
         font-size: 0.6rem;
         left: -0.7rem;
     }
+
 
     .question-area {
         padding: 10% 0;
         width: 100%;
     }
 
+
     .question-area span {
         padding: 0;
     }
 
+
     .answer-message {
         display: block;
     }
+
 
     #answer-box {
         display: block;
@@ -217,9 +255,11 @@ body {
         margin-top: 0;
     }
 
+
     .score-area {
         width: 100%;
     }
+
 
     .scores {
         margin: 0.5em auto;
@@ -227,20 +267,24 @@ body {
         padding: 5px;
     }
 
+
     .heading {
         font-size: 2rem;
     }
 }
+
 
 @media (max-width: 320px) {
     .game-area {
         height: 70vh;
     }
 
+
     .controls-area {
         width: 75%;
         margin: 10px auto;
     }
+
 
     .btn--big {
         margin: 10px 10px;
@@ -249,4 +293,6 @@ body {
         padding: 10px 0;
     }
 
+
 }
+
